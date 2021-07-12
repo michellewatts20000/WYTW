@@ -328,20 +328,8 @@
                                 "address": this.email,
                             }],
 
-                            "phone_numbers": [{
-                                "number": this.number,
-                            }],
-
-
                             "custom_fields": {
-                                "Where": this.state,
-                                "Employer": this.employer,
                                 "Union Membership Status": this.union,
-                                "Pay Level": this.level,
-                                "textfield": this.number,
-
-
-
                             },
 
                         },
@@ -355,9 +343,7 @@
                         },
 
                         "add_tags": [
-                            "C: Equal Pay ASU",
-                            "A: gated online resource",
-                            "I: Industrial Issues (Pay, Conditions, EAs, Bargaining)",
+                            "C: WYTW"
 
 
                         ]
@@ -368,7 +354,7 @@
 
 
                     axios.post(
-                        'https://actionnetwork.org/api/v2/forms/25125176-d104-41ae-ba58-72498641f6cd/submissions',
+                        'https://actionnetwork.org/api/v2/forms/aea3203f-3244-4bbb-a15f-fc97eef03157/submissions',
                         formData, {
 
                         }).then(data => {

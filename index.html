@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Equal Pay Rates</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+
+
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://unionsnsw.org.au/wp-includes/js/jquery.osdi.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- cleave.js -->
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-cleave-component@2"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon"
+        href="https://d3n8a8pro7vhmx.cloudfront.net/asuservices/sites/1/favicon_images/original/ASU-nsw-200px.png?1594617935" />
+
+
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #ffcf3d;
+            padding: 50px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .table {
+            margin-top: 50px;
+            color: #000;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        select {
+            margin-bottom: 10px;
+        }
+
+        label {
+            margin-bottom: 2px;
+            text-align: left;
+            color: #000;
+        }
+
+        .bang {
+            margin-top: 30px;
+            background-color: #834597;
+            width: 600px;
+            padding: 10px;
+        }
+
+
+        .btn-danger {
+            background-color: #834597 !important;
+            margin-top: 20px;
+        }
+
+        .header {
+            color: #000;
+        }
+
+        .intro {
+            width: 80%;
+            margin: 40px;
+            margin-top: 20px !important;
+            margin-bottom: 40px !important;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        .alert {
+            width: 80%;
+            margin: 40px;
+            margin-top: 5px !important;
+            margin-bottom: 5px !important;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+            width: 150px;
+        }
+
+        form {
+
+            margin: 0 auto;
+        }
+
+        #this {
+            width: 300px !important;
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+                background-color: #ffcf3d !important;
+                padding: 10px !important;
+                padding-top: 30px !important;
+            }
+
+
+            .brand {
+                width: 300px;
+                margin-bottom: 50px;
+            }
+
+            form {
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            #this {
+                width: 300px !important;
+            }
+
+
+
+            .bang {
+                font-size-adjust: 1vw !important;
+                width: 300px;
+            }
+
+            .intro {
+                margin: 40px 0px 40px 0px;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 18px;
+                width: 98%;
+                color: #000;
+            }
+
+
+            .alert {
+                margin: 5px 0px 5px 0px;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 18px;
+                width: 98%;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+                width: 100px;
+            }
+
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+        <div id="app">
+            <div>
+                <center>
+                    <!-- <img class="logo" src="img/wytw-logo.png"> -->
+                    <br>
+
+                    <img class="brand mb-3" width="250px" src="img/logo.png"></a>
+
+                    <p class="intro">All workers have rights and protections at work including a minimum hourly rate of
+                        pay. Your workplace conditions may be set out in an award, agreement or contract of employment.
+                        Use the form below to find out your rate of pay.
+                    </p>
+
+                    <div id="this">
+                        <form id="an-api" v-on:submit.prevent="submitForm">
+
+                            <label>Name <span>*</span>&nbsp;</label>
+                            <input type="text" class="form-control" name="name" id="name" required v-model="name"
+                                required />
+
+                            <label>Email <span>*</span>&nbsp;</label>
+                            <input type="text" class="form-control" name="email_address" id="email" required
+                                v-model="email" required />
+
+                            <label>Are you a member of a union? <span>*</span>&nbsp;</label>
+                            <select class="custom-select" v-model="union" name="union" id="union" required>
+                                <option value="">[choose one]</option>
+                                <option value="Union Member">Yes</option>
+                                <option value="Non Union Member">No</option>
+                                <option value="Not Employed">I'm
+                                    currently unemployed or unable to work</option>
+                            </select>
+
+                            <label>Age<span>*</span>&nbsp;</label>
+                            <select class="custom-select" v-model="level" required>
+                                <option value="">[choose one]</option>
+                                <option value="14.39|202">17
+                                </option>
+                                <option value="30.03|208">18</option>
+                                <option value="30.94|215">19</option>
+                                <option value="31.77|220">20</option>
+                                <option value="32.54|249">21+</option>
+                            </select>
+
+
+
+                            <button type="submit" id="custom_submit" value="Submit" class="btn-danger btn"
+                                v-html="button_text"></button>
+                            <br>
+
+
+                        </form>
+
+                    </div>
+
+
+                    <div v-if="calculated == true">
+
+
+                        <h2 class="bang">
+                            Your hourly rate: ${{ level.split('|')[0] }}
+                        </h2>
+                        <h2 class="bang">
+                            Because the ASU won Equal Pay your weekly pay is higher by: ${{ level.split('|')[1] }}
+                        </h2>
+                        <br>
+                        <br>
+                        <p class="alert"><strong>For community and disability workers from July 1, 2021 find weekly and
+                                casual rates <a target=”_blank”
+                                    href="https://drive.google.com/file/d/1sf6sfUREcnpMp3iljIdWKppnWwfNO4YT/view?usp=sharing">here.</a></strong>
+                        </p>
+
+                        <p class="alert"><strong>Join the Equal Pay Union:
+                                <a href="https://www.asumembers.org.au"
+                                    target=”_blank”>www.asumembers.org.au</a></strong></p>
+                </center>
+                <div>
+
+                    <center>
+
+                        <p class="footer" style="margin-top:40px; margin-bottom:20px; font-size: 12px;">
+                            *Authorised by
+                            Mark Morey, Secretary, Unions NSW. Our
+                            team
+                            acknowledges that we meet
+                            and work on the land of the Gadigal people of the Eora Nation. We wish to pay
+                            respect
+                            to their Elders past, present and future. &copy; 2021 Unions NSW All
+                            Rights
+                            Reserved. <a href="https://www.unionsnsw.org.au/privacy-statement-of-unions-nsw/"
+                                target="_blank">View our
+                                privacy statement.</a></p>
+
+                    </center>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+
+
+    <script>
+        var app = new Vue({
+            // the element to apply the code to
+            el: '#app',
+            //define the variables
+            data: {
+                name: '',
+                email: '',
+                number: '',
+                state: '',
+                union: '',
+                employer: '',
+                level: '',
+                button_text: 'Submit',
+                calculated: false,
+
+
+            },
+
+            // watches for input changes - this way you don't need a submit button
+            watch: {
+
+            },
+
+            methods: {
+
+                submitForm: function () {
+
+                    //show loading animation
+                    this.button_text =
+                        '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
+
+
+                    var formData = {
+                        "person": {
+                            "given_name": this.name,
+
+
+                            "email_addresses": [{
+                                "address": this.email,
+                            }],
+
+                            "phone_numbers": [{
+                                "number": this.number,
+                            }],
+
+
+                            "custom_fields": {
+                                "Where": this.state,
+                                "Employer": this.employer,
+                                "Union Membership Status": this.union,
+                                "Pay Level": this.level,
+                                "textfield": this.number,
+
+
+
+                            },
+
+                        },
+
+
+                        "triggers": {
+                            "autoresponse": {
+                                "enabled": true
+                            }
+
+                        },
+
+                        "add_tags": [
+                            "C: Equal Pay ASU",
+                            "A: gated online resource",
+                            "I: Industrial Issues (Pay, Conditions, EAs, Bargaining)",
+
+
+                        ]
+
+
+
+                    };
+
+
+                    axios.post(
+                        'https://actionnetwork.org/api/v2/forms/25125176-d104-41ae-ba58-72498641f6cd/submissions',
+                        formData, {
+
+                        }).then(data => {
+                        this.calculated = true;
+                        console.log(data);
+                        this.button_text = 'Submit';
+                    })
+
+
+
+                },
+
+                myFunction: function () {
+                    this.formattedNumber = this.level.toFixed(0);
+                },
+
+
+
+
+
+            },
+
+            // computer variables - 
+            computed: {
+
+
+
+
+
+            }
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

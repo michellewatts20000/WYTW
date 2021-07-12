@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>Equal Pay Rates</title>
+    <title>What's your time worth?</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-
-
 
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,8 +27,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/x-icon"
-        href="https://d3n8a8pro7vhmx.cloudfront.net/asuservices/sites/1/favicon_images/original/ASU-nsw-200px.png?1594617935" />
+    <!-- <link rel="icon" type="image/x-icon"
+        href="https://d3n8a8pro7vhmx.cloudfront.net/asuservices/sites/1/favicon_images/original/ASU-nsw-200px.png?1594617935" /> -->
 
 
 
@@ -72,6 +70,7 @@
         .bang {
             margin-top: 30px;
             background-color: #834597;
+            color: #ffffff;
             width: 600px;
             padding: 10px;
         }
@@ -79,6 +78,7 @@
 
         .btn-danger {
             background-color: #834597 !important;
+            border-color: #834597 !important;
             margin-top: 20px;
         }
 
@@ -216,12 +216,12 @@
                             <label>Age<span>*</span>&nbsp;</label>
                             <select class="custom-select" v-model="level" required>
                                 <option value="">[choose one]</option>
-                                <option value="14.39|202">17
+                                <option value="14.39|16.63|20.07">17
                                 </option>
-                                <option value="30.03|208">18</option>
-                                <option value="30.94|215">19</option>
-                                <option value="31.77|220">20</option>
-                                <option value="32.54|249">21+</option>
+                                <option value="16.94|19.63|23.71">18</option>
+                                <option value="20.46|23.79|28.63">19</option>
+                                <option value="24.23|28.10|33.92">20</option>
+                                <option value="24.80|28.77|34.72">21+</option>
                             </select>
 
 
@@ -238,13 +238,31 @@
 
                     <div v-if="calculated == true">
 
+                        <table class="table">
+                            <thead>
+                                <tr>
 
+                                    <th scope="col">Casual</th>
+                                    <th scope="col">Casual on a Saturday</th>
+                                    <th scope="col">Casual on a Sunday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>${{ level.split('|')[0] }}</td>
+                                    <td>${{ level.split('|')[1] }}</td>
+                                    <td>${{ level.split('|')[2] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- 
                         <h2 class="bang">
                             Your hourly rate: ${{ level.split('|')[0] }}
-                        </h2>
-                        <h2 class="bang">
+                        </h2> -->
+                        <!-- <h2 class="bang">
                             Because the ASU won Equal Pay your weekly pay is higher by: ${{ level.split('|')[1] }}
-                        </h2>
+                        </h2> -->
                         <br>
                         <br>
                         <p class="alert"><strong>For community and disability workers from July 1, 2021 find weekly and
